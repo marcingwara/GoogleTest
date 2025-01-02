@@ -23,19 +23,24 @@ public class GoogleTest {
 }
 @AfterMethod
     public void after(){
-   driver.close();
-   driver.quit();
+  driver.close();
+  driver.quit();
 }
 
 @Test
-public void testGoogle(){
+public void testGoogle() throws InterruptedException {
     WebElement button = driver.findElement(By.id("W0wltc"));
     button.click();
     WebElement searchInput = driver.findElement(By.className("gLFyf"));
-      searchInput.sendKeys("onet.pl");
+      searchInput.sendKeys("Onet.pl");
       searchInput.submit();
       String pageTitle = driver.getTitle();
-      assertTrue(pageTitle.contains("onet.pl"));
+      assertTrue(pageTitle.contains("Onet.pl"));
+      WebElement firstResult = driver.findElement(By.cssSelector("h3"));
+      firstResult.click();
+      Thread.sleep(1000);
+      WebElement acceptAndClose = driver.findElement(By.className("cmp-intro_acceptAll"));
+      acceptAndClose.click();
 
 
 
